@@ -6,11 +6,7 @@ But before we get into the details, we need to introduce the data we will be usi
 
 Additionally to the small size of the dataset, the target labels are imbalanced as well, only 17,5% of target labels pertain to the positive class. For this reason the competition host decided to use balanced log loss instead of the usual (imabalanced) log loss as a metric. That is
 
-
-$$ \begin{equation}
-\text{Balanced Log Loss} = -\frac{1}{2} \left( \frac{\Sigma^{N}_{i=1} y_{0i} \log p_{0i}}{N_0}  + \frac{\Sigma^{N}_{i=1} y_{1i} \log p_{1i}}{N_1}   \right) 
-\end{equation}$$
-
+$$ Balanced Log Loss = -\frac{1}{2} \left( \frac{\Sigma^{N}_{i=1} y_{0i} \log p_{0i}}{N_0}  + \frac{\Sigma^{N}_{i=1} y_{1i} \log p_{1i}}{N_1}   \right) $$
 
 where $N_{0}$ is the number of observations in class 0, $y_{0i}$ is 1 if the observation belongs to class 0 and is 0 otherwise and $p_{0i}$ is the predicted probability that observation $i$ belongs to class 0. Likewise for $N_{1}$, $y_{1i}$ and $p_{1i}$, while $N = N_{0} + N_{1}$ is the total number of observations.
 
