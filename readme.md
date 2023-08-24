@@ -6,15 +6,14 @@ But before we get into the details, we need to introduce the data we will be usi
 
 Additionally to the small size of the dataset, the target labels are imbalanced as well, only 17,5% of target labels pertain to the positive class. For this reason the competition host decided to use balanced log loss instead of the usual (imabalanced) log loss as a metric. That is
 
+where $N_{0}$ is the number of observations in class 0, $y_{0i}$ is 1 if the observation belongs to class 0 and is 0 otherwise and $p_{0i}$ is the predicted probability that observation $i$ belongs to class 0. Likewise for $N_{1}$, $y_{1i}$ and $p_{1i}$, while $N = N_{0} + N_{1}$ is the total number of observations.
+
+In order to evaluate our models we will hence be using balanced log loss instead of the usual log loss. Speaking of models, we did not specify yet what kind of model we would like to fit to the data. As we would like to focus on the Bayesian Optimization part, we will choose to fit a TreeBoosting model using XGBoost. While being a good choice in general with tabular data and in particular tabular data of small or medium size, XGBoost is a simple to use package and model that lets us focus on the Bayesian Optimization part that we are mainly interested in. On top of that calculation is rather fast, such that we can cross validate the model quickly on several cross-validation splits. 
+
 
 $$ \begin{equation}
 \text{Balanced Log Loss} = -\frac{1}{2} \left( \frac{\Sigma^{N}_{i=1} y_{0i} \log p_{0i}}{N_0}  + \frac{\Sigma^{N}_{i=1} y_{1i} \log p_{1i}}{N_1}   \right) 
 \end{equation}$$
-
-
-where $N_{0}$ is the number of observations in class 0, $y_{0i}$ is 1 if the observation belongs to class 0 and is 0 otherwise and $p_{0i}$ is the predicted probability that observation $i$ belongs to class 0. Likewise for $N_{1}$, $y_{1i}$ and $p_{1i}$, while $N = N_{0} + N_{1}$ is the total number of observations.
-
-In order to evaluate our models we will hence be using balanced log loss instead of the usual log loss. Speaking of models, we did not specify yet what kind of model we would like to fit to the data. As we would like to focus on the Bayesian Optimization part, we will choose to fit a TreeBoosting model using XGBoost. While being a good choice in general with tabular data and in particular tabular data of small or medium size, XGBoost is a simple to use package and model that lets us focus on the Bayesian Optimization part that we are mainly interested in. On top of that calculation is rather fast, such that we can cross validate the model quickly on several cross-validation splits. 
 
 
 # Model and cross validation setup
@@ -764,7 +763,7 @@ sbn.lmplot(data = df_final, x = 'point_no', y = 'cv_score', hue = 'stage', lowes
 
 
     
-![png](output_23_1.png)
+![png](output_24_1.png)
     
 
 
@@ -806,7 +805,7 @@ sbn.lmplot(data = df_plot, x = 'no_point', y = 'value', col = 'stage', row = 'hy
 
 
     
-![png](output_25_1.png)
+![png](output_26_1.png)
     
 
 
